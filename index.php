@@ -8,9 +8,37 @@
         text-align: center;
     }
 
+     form input[type="text"] {
+        width: 100%;
+        padding: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    form label {
+        display: block; /* แสดง label แบบ block เพื่อให้มีขอบข้อความแตกแยก */
+        margin: 10px 0; /* เพิ่มระยะห่างขอบข้อความข้างบนและด้านล่าง */
+    }
     form input[type="submit"] {
         margin-top: 15px;
+        background-color: #4CAF50; /* สีพื้นหลังปุ่ม */
+        color: white; /* สีข้อความบนปุ่ม */
+        border: none;
+        padding: 15px 20px;
+        border-radius: 5px;
+        cursor: pointer;
     }
+
+    h1 {
+        text-align: center;
+        background-color: #333; /* สีพื้นหลังของหัวข้อ */
+        color: white; /* สีข้อความของหัวข้อ */
+        padding: 20px;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
 </style>
 
 </head>
@@ -18,13 +46,10 @@
     <h1>ระบบรดน้ำอัตโนมัติ</h1>
     <form action="process.php" method="POST">
 
-        <label for="temperature">ช่วงอุณหภูมิ (°C):</label>
-        <input type="text" name="temperature" id="temperature" required placeholder="กรุณากรอกช่วงอุณหภูมิ"><br>
-
-        <label for="humidity">ช่วงความชื้น (%):</label>
+        <label for="humidity">ช่วงความชื้น (VWC):</label>
         <input type="text" name="humidity" id="humidity" required placeholder="กรุณากรอกช่วงความชิ้น"><br>
-
         <input type="submit" value="บันทึกการตั้งค่า">
+        
     </form>
 
     <h2>ค่าข้อมูลปัจจุบัน:</h2>
@@ -39,8 +64,7 @@
     if ($result->num_rows > 0) {
         // แสดงข้อมูลที่ดึงมาจากฐานข้อมูล
         while ($row = $result->fetch_assoc()) {
-            echo "<p>อุณหภูมิ: " . $row["temperature"] . " °C</p>";
-            echo "<p>ความชื้น: " . $row["humidity"] . " %</p>";
+            echo "<p>ความชื้น: " . $row["humidity"] . " VWC</p>";
             echo "<p>เวลาบันทึก: " . $row["updated_at"] . "</p>";
         }
     } else {

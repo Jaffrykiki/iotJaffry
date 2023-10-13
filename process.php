@@ -4,11 +4,10 @@
 require_once("db_connection.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $temperature = $_POST["temperature"];
     $humidity = $_POST["humidity"];
 
     // เตรียมคำสั่ง SQL เพื่ออัปเดตข้อมูลและฟิลด์ updated_at
-    $sql = "UPDATE settings SET temperature = $temperature, humidity = $humidity, updated_at = CURRENT_TIMESTAMP ORDER BY created_at DESC LIMIT 1";
+    $sql = "UPDATE settings SET humidity = $humidity, updated_at = CURRENT_TIMESTAMP ORDER BY created_at DESC LIMIT 1";
 
     if ($conn->query($sql) === TRUE) {
         echo "อัปเดตข้อมูลสำเร็จ";
